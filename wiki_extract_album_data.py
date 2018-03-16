@@ -87,11 +87,30 @@ rows = np.arange(0,len(df_final))
 for col in colsToFix:
     for row in rows:
         if pd.isnull(df_final.iloc[row][col]):
-            currList = []
+            currList = np.NaN
+            #currList = []
             df_final.iloc[row][col] = currList
         else:   
             currList = df_final.iloc[row][col].split(",")
             df_final.iloc[row][col] = currList
+
+## edit release date
+#col = ['Release date']
+#rows = np.arange(0,len(df_final))
+#for c in col:
+#    for r in rows:
+#        if pd.isnull(df_final.iloc[r][c]):
+#            currList = np.NaN
+#            #currList = []
+#            df_final.iloc[r][c] = currList
+#        else:
+#            currList = df_final.iloc[r][c].replace(" ","-")
+#            df_final.iloc[r][c] = currList
+            
+# add 'Meta Score' column
+scr = 'Meta Score'
+df_final[scr] = np.NaN
+
 
 # save to csv
 df_final.to_csv("allData/wikiData.csv", index = False)
